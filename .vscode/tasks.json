@@ -1,0 +1,56 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Transport Planner (g++)",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-std=c++17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-finput-charset=UTF-8",
+        "-fexec-charset=UTF-8",
+        "src/graph.cpp",
+        "src/dijkstra.cpp",
+        "src/main.cpp",
+        "-o",
+        "transport.exe"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": "$gcc",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Run Transport Planner",
+      "type": "shell",
+      "command": "./transport.exe",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": "Build Transport Planner (g++)",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Sample Input",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "transport.exe < tests\\sample_input.txt"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": "Build Transport Planner (g++)",
+      "problemMatcher": []
+    }
+  ]
+}
